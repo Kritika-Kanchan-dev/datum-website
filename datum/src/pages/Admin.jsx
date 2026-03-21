@@ -18,7 +18,7 @@ function AuthGate({ onAuth }) {
   const [show, setShow] = useState(false)
   const [error, setError] = useState('')
 
-  const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'datum@admin2024'
+  const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD
 
   const handleLogin = (e) => {
     e.preventDefault()
@@ -757,67 +757,6 @@ function DashboardTab({ isDark, setActiveTab }) {
         })}
       </div>
 
-      {/* Setup guide */}
-      <div className={`rounded-2xl p-6 ${card}`}>
-        <h3 className={`font-display font-bold text-lg mb-4 ${text}`}>🚀 Supabase Setup Guide</h3>
-        <div className="space-y-4">
-          {[
-            { step: '01', title: 'Create Supabase Project', desc: 'Go to supabase.com, create a new project, and copy your Project URL and anon key.' },
-            { step: '02', title: 'Set Environment Variables', desc: 'Create a .env file: VITE_SUPABASE_URL=... and VITE_SUPABASE_ANON_KEY=...' },
-            { step: '03', title: 'Create Tables', desc: 'Run the SQL schema below in Supabase SQL editor to create events, team_members, and gallery tables.' },
-            { step: '04', title: 'Setup Cloudinary', desc: 'Create a free Cloudinary account for image uploads. Set VITE_CLOUDINARY_CLOUD_NAME in .env' },
-            { step: '05', title: 'Set Admin Password', desc: 'Set VITE_ADMIN_PASSWORD in .env to secure the admin portal.' },
-          ].map(s => (
-            <div key={s.step} className={`flex gap-4 p-4 rounded-xl ${isDark ? 'bg-dark-600/60' : 'bg-slate-50'}`}>
-              <span className="font-mono text-primary-400 text-sm font-bold flex-shrink-0">{s.step}</span>
-              <div>
-                <p className={`font-semibold text-sm ${text}`}>{s.title}</p>
-                <p className={`text-xs mt-0.5 ${sub}`}>{s.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className={`mt-6 p-4 rounded-xl font-mono text-xs overflow-x-auto ${isDark ? 'bg-dark-900 text-emerald-300' : 'bg-slate-900 text-emerald-400'}`}>
-          <p className="text-gray-500 mb-2">-- SQL Schema for Supabase</p>
-          <p>{'create table events ('}</p>
-          <p className="pl-4">{'id uuid default gen_random_uuid() primary key,'}</p>
-          <p className="pl-4">{'title text not null,'}</p>
-          <p className="pl-4">{'description text,'}</p>
-          <p className="pl-4">{'date date not null,'}</p>
-          <p className="pl-4">{'time text,'}</p>
-          <p className="pl-4">{'location text,'}</p>
-          <p className="pl-4">{'category text default \'Workshop\','}</p>
-          <p className="pl-4">{'image text,'}</p>
-          <p className="pl-4">{'register_link text,'}</p>
-          <p className="pl-4">{'is_upcoming boolean default true,'}</p>
-          <p className="pl-4">{'created_at timestamptz default now()'}</p>
-          <p>{');'}</p>
-          <br />
-          <p>{'create table team_members ('}</p>
-          <p className="pl-4">{'id uuid default gen_random_uuid() primary key,'}</p>
-          <p className="pl-4">{'name text not null,'}</p>
-          <p className="pl-4">{'role text not null,'}</p>
-          <p className="pl-4">{'year text,'}</p>
-          <p className="pl-4">{'team text,'}</p>
-          <p className="pl-4">{'avatar text,'}</p>
-          <p className="pl-4">{'photo_url text,'}</p>
-          <p className="pl-4">{'color text,'}</p>
-          <p className="pl-4">{'linkedin text,'}</p>
-          <p className="pl-4">{'github text,'}</p>
-          <p className="pl-4">{'order_index integer default 0,'}</p>
-          <p className="pl-4">{'created_at timestamptz default now()'}</p>
-          <p>{');'}</p>
-          <br />
-          <p>{'create table gallery ('}</p>
-          <p className="pl-4">{'id uuid default gen_random_uuid() primary key,'}</p>
-          <p className="pl-4">{'src text not null,'}</p>
-          <p className="pl-4">{'caption text,'}</p>
-          <p className="pl-4">{'tag text default \'Event\','}</p>
-          <p className="pl-4">{'created_at timestamptz default now()'}</p>
-          <p>{');'}</p>
-        </div>
-      </div>
     </div>
   )
 }
