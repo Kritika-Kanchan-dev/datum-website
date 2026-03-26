@@ -3,6 +3,7 @@
 > Official website of **Datum**, the Data Science Club of GLA University, Mathura.  
 > Built with React + Vite, Tailwind CSS, Supabase, and Cloudinary.
 
+Live Link : https://datum-website-gamma.vercel.app/
 ---
 
 ## ✨ Features
